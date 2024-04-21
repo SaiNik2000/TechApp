@@ -26,24 +26,24 @@ Repository: (https://github.com/SaiNik2000/TechApp/tree/main)
 Displays the user's daily goal and current water intake.
 Allows users to navigate to other screens to add water intake or set a new goal.
 
-![HomePage](images/homepage.jpeg)
+![HomePage](Images/homepage.jpeg)
 
 2. Add Water Screen
 Enables users to input the amount of water they drink.
 Validates the input and updates the total water intake accordingly.
 
-![Add Water](images/addwater.jpeg)
+![Add Water](Images/addwater.jpeg)
 
 
-![Validation](images/validation.jpeg)
+![Validation](Images/validation.jpeg)
 
 3. Goal Screen
 Allows users to set their daily water intake goal.
 Saves the goal and navigates back to the Home Screen.
 
-![Goal](images/goal.jpeg)
+![Goal](Images/goal.jpeg)
 
-![HomePage Output](images/output.jpeg)
+![HomePage Output](Images/output.jpeg)
 
 
 ### Usage
