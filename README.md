@@ -1,79 +1,236 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Water Tracking App
+## Overview
+This mobile application allows users to track their daily water intake and set goals for water consumption. Users can input the amount of water they drink manually, set their daily water intake goal, and view their water intake history.
 
-# Getting Started
+### Installation
+- Clone the repository.
+- Navigate to the project directory.
+- Run npm install to install dependencies.
+- Run npm start to start the application.
+  
+## Screens
+1. Home Screen
+Displays the user's daily goal and current water intake.
+Allows users to navigate to other screens to add water intake or set a new goal.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+2. Add Water Screen
+Enables users to input the amount of water they drink.
+Validates the input and updates the total water intake accordingly.
 
-## Step 1: Start the Metro Server
+3. Goal Screen
+Allows users to set their daily water intake goal.
+Saves the goal and navigates back to the Home Screen.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+4. History Screen
+Displays the user's water intake history.
+If no history is available, prompts the user accordingly.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### Usage
+Data Intake
+Water intake data is inputted manually by the user on the Add Water Screen.
+The amount of water intake is then added to the user's total intake and displayed on the Home Screen.
+## Screens
 
-```bash
-# using npm
-npm start
+### Home Screen
 
-# OR using Yarn
-yarn start
+The Home Screen displays the user's daily water intake goal and their current water intake. It also provides options to add water intake and set a new goal.
+
+```jsx
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+
+const HomeScreen = ({ navigation, route }) => {
+  // Extracting data from route params
+  const { goal, waterIntake } = route.params || {};
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Water Tracking App</Text>
+
+      {/* Display Daily Goal */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoLabel}>Daily Goal:</Text>
+        <Text style={styles.infoText}>{goal ? `${goal} ml` : 'Not set'}</Text>
+      </View>
+
+      {/* Display Water Intake */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoLabel}>Water Intake:</Text>
+        <Text style={styles.infoText}>{waterIntake ? `${waterIntake} ml` : 'No data'}</Text>
+      </View>
+
+      {/* Button Container */}
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Add Water"
+          onPress={() => navigation.navigate('AddWater', { goal, waterIntake })}
+          color="#007bff"
+        />
+        <Button
+          title="Set Goal"
+          onPress={() => navigation.navigate('Goal', { goal, waterIntake })}
+          color="#28a745"
+        />
+      </View>
+    </View>
+  );
+};
+
+// Styles
+const styles = StyleSheet.create({
+  // Styles definition
+});
+
+export default HomeScreen;
 ```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+### Add Water Screen
+Users can manually add their water intake in this screen. They input the amount of water they consumed, and it gets added to their total intake.
 ```
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-### For iOS
+const AddWaterScreen = ({ navigation, route }) => {
+  const { goal, waterIntake } = route.params || {};
+  const [waterAmount, setWaterAmount] = useState('');
 
-```bash
-# using npm
-npm run ios
+  const handleAddWater = () => {
+    // Logic to add water intake
+  };
 
-# OR using Yarn
-yarn ios
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Add Water Intake</Text>
+      <TextInput
+        placeholder="Enter water amount in ml"
+        keyboardType="numeric"
+        value={waterAmount}
+        onChangeText={setWaterAmount}
+        style={styles.input}
+      />
+      <Button title="Add Water" onPress={handleAddWater} />
+    </View>
+  );
+};
+
+// Styles
+const styles = StyleSheet.create({
+  // Styles definition
+});
+
+export default AddWaterScreen;
 ```
+### Goal Screen
+Users can set their daily water intake goal in this screen.
+```
+import React, { useState } from 'react';
+import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+const GoalScreen = ({ navigation, route }) => {
+  const [goal, setGoal] = useState(route.params?.goal || '');
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+  const saveGoal = () => {
+    // Logic to save the goal
+  };
 
-## Step 3: Modifying your App
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Set Daily Water Intake Goal</Text>
+      <TextInput
+        placeholder="Enter goal in ml"
+        keyboardType="numeric"
+        value={goal}
+        onChangeText={setGoal}
+        style={styles.input}
+      />
+      <Button title="Save Goal" onPress={saveGoal} />
+    </View>
+  );
+};
 
-Now that you have successfully run the app, let's modify it.
+// Styles
+const styles = StyleSheet.create({
+  // Styles definition
+});
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+export default GoalScreen;
+```
+### History Screen
+This screen displays the history of water intake.
+```
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+const HistoryScreen = ({ history }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Water Intake History</Text>
+      <View style={styles.historyContainer}>
+        {/* Logic to display history */}
+      </View>
+    </View>
+  );
+};
 
-## Congratulations! :tada:
+// Styles
+const styles = StyleSheet.create({
+  // Styles definition
+});
 
-You've successfully run and modified your React Native App. :partying_face:
+export default HistoryScreen;
+```
+### Data Intake:
+Data intake in various screens can be showns in the below syntax.
 
-### Now what?
+### Add Water screen
+Add Water Screen: Handles user input of water intake and updates the total intake.
+```
+// AddWaterScreen.js
+// Code snippet for handling water intake addition
+const handleAddWater = () => {
+  const amountToAdd = parseInt(waterAmount, 10);
+  if (!isNaN(amountToAdd) && amountToAdd > 0) {
+    const newWaterIntake = (waterIntake || 0) + amountToAdd;
+    navigation.navigate('Home', { goal, waterIntake: newWaterIntake });
+  } else {
+    alert('Please enter a valid amount of water to add.');
+  }
+};
+```
+### Goal screen
+Goal Screen: Allows users to set their daily water intake goal.
+```
+// GoalScreen.js
+// Code snippet for saving the user's goal
+const saveGoal = () => {
+  // Save goal logic here
+  console.log('Goal saved:', goal);
+  navigation.navigate('Home', { goal, waterIntake });
+};
+```
+### Hitory Screen
+History Screen: Displays the user's water intake history.
+```
+// HistoryScreen.js
+// Code snippet for rendering water intake history
+return (
+  <View style={styles.container}>
+    <Text style={styles.title}>Water Intake History</Text>
+    <View style={styles.historyContainer}>
+      {history.length > 0 ? (
+        history.map((item, index) => (
+          <Text key={index} style={styles.historyItem}>
+            {item} ml
+          </Text>
+        ))
+      ) : (
+        <Text style={styles.noHistoryText}>No water intake history</Text>
+      )}
+    </View>
+  </View>
+);
+```
+### Dependencies
+- React Native
+- @react-navigation/native
+- @react-navigation/stack
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
