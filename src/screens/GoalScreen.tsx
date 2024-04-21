@@ -24,6 +24,7 @@ const GoalScreen = ({ navigation, route }) => {
       />
       <Button title="Save Goal" onPress={saveGoal} />
     </View>
+
   );
 };
 
