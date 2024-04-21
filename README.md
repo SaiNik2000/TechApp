@@ -1,79 +1,58 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Water Tracking App
 
-# Getting Started
+This mobile application allows users to track their daily water intake. Users can set a daily water intake goal and manually add their water intake throughout the day.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Screens
 
-## Step 1: Start the Metro Server
+### Home Screen
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+The Home Screen displays the user's daily water intake goal and their current water intake. It also provides options to add water intake and set a new goal.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+```jsx
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-```bash
-# using npm
-npm start
+const HomeScreen = ({ navigation, route }) => {
+  // Extracting data from route params
+  const { goal, waterIntake } = route.params || {};
 
-# OR using Yarn
-yarn start
-```
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Water Tracking App</Text>
 
-## Step 2: Start your Application
+      {/* Display Daily Goal */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoLabel}>Daily Goal:</Text>
+        <Text style={styles.infoText}>{goal ? `${goal} ml` : 'Not set'}</Text>
+      </View>
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+      {/* Display Water Intake */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.infoLabel}>Water Intake:</Text>
+        <Text style={styles.infoText}>{waterIntake ? `${waterIntake} ml` : 'No data'}</Text>
+      </View>
 
-### For Android
+      {/* Button Container */}
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Add Water"
+          onPress={() => navigation.navigate('AddWater', { goal, waterIntake })}
+          color="#007bff"
+        />
+        <Button
+          title="Set Goal"
+          onPress={() => navigation.navigate('Goal', { goal, waterIntake })}
+          color="#28a745"
+        />
+      </View>
+    </View>
+  );
+};
 
-```bash
-# using npm
-npm run android
+// Styles
+const styles = StyleSheet.create({
+  // Styles definition
+});
 
-# OR using Yarn
-yarn android
-```
+export default HomeScreen;
 
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
