@@ -1,6 +1,19 @@
+
+
+
+
 # Water Tracking App
+
+### Group Members
+
+Giridhar Reddy Chittepu (M15891686)
+Nagarjuna vishal Eswar Jonnalagadda (M15893630)
+Sai Chaitanya Puppala (M15891846)
+
 ## Overview
 This mobile application allows users to track their daily water intake and set goals for water consumption. Users can input the amount of water they drink manually, set their daily water intake goal, and view their water intake history.
+
+Repository: (https://github.com/SaiNik2000/TechApp/tree/main)
 
 ### Installation
 - Clone the repository.
@@ -13,13 +26,24 @@ This mobile application allows users to track their daily water intake and set g
 Displays the user's daily goal and current water intake.
 Allows users to navigate to other screens to add water intake or set a new goal.
 
+![HomePage](images/homepage.jpeg)
+
 2. Add Water Screen
 Enables users to input the amount of water they drink.
 Validates the input and updates the total water intake accordingly.
 
+![Add Water](images/addwater.jpeg)
+
+
+![Validation](images/validation.jpeg)
+
 3. Goal Screen
 Allows users to set their daily water intake goal.
 Saves the goal and navigates back to the Home Screen.
+
+![Goal](images/goal.jpeg)
+
+![HomePage Output](images/output.jpeg)
 
 
 ### Usage
@@ -31,6 +55,8 @@ The amount of water intake is then added to the user's total intake and displaye
 ### Home Screen
 
 The Home Screen displays the user's daily water intake goal and their current water intake. It also provides options to add water intake and set a new goal.
+
+
 
 ```jsx
 import React from 'react';
@@ -226,6 +252,12 @@ return (
   </View>
 );
 ```
+
+### Working
+
+This mobile application is a complete solution that allows users to effectively monitor and control their daily water intake. Upon installation, users have access to several screens: the Home Screen displays an overview of their current water intake in comparison to their set daily goal, as well as options to add intake or adjust goals; the Add Water Screen allows for manual input of water consumption, ensuring validation and dynamically updating the total intake, resulting in changes being reflected instantly on the Home Screen. Furthermore, the Goal Screen allows users to set or change their daily intake targets, which are seamlessly integrated with the Home Screen to show the current goal. Furthermore, the History Screen provides a retroactive picture of previous water intake, increasing user knowledge and accountability over time. The application, which uses React Native and navigation libraries, provides a seamless user experience while stressing simplicity and functionality in water intake control.
+
+
 ### Dependencies
 - React Native
 - @react-navigation/native
