@@ -21,9 +21,6 @@ Validates the input and updates the total water intake accordingly.
 Allows users to set their daily water intake goal.
 Saves the goal and navigates back to the Home Screen.
 
-4. History Screen
-Displays the user's water intake history.
-If no history is available, prompts the user accordingly.
 
 ### Usage
 Data Intake
