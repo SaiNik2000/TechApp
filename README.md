@@ -14,7 +14,8 @@ Sai Chaitanya Puppala (M15891846)
 This mobile application allows users to track their daily water intake and set goals for water consumption. Users can input the amount of water they drink manually, set their daily water intake goal, and view their water intake history.
 
 Repository: (https://github.com/SaiNik2000/TechApp/tree/main)
-###Video Link:https://drive.google.com/file/d/1VxxQhXyBxrDz2c4Ug8nZxwa0G6z3mO03/view?usp=sharing
+
+Video Link:https://drive.google.com/file/d/1VxxQhXyBxrDz2c4Ug8nZxwa0G6z3mO03/view?usp=sharing
 
 ### Installation
 - Clone the repository.
